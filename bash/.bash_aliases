@@ -2,6 +2,11 @@ if [[ -f ~/.my_aliases ]]; then
     source ~/.my_aliases;
 fi
 
+if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/bin/virtualenvwrapper.sh
+fi
+
 #Some bash crap...
 complete -cf sudo
 shopt -s cdspell
