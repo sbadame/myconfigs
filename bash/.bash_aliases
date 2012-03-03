@@ -68,6 +68,16 @@ function get_git_info {
   fi
 }
 
+#Just for the tools that like to modify the prompt, it's good to have a variable without newlines.
+#(lookin at you virtualenv)
+export SIMPLE_PROMPT="\[\e[47m\]\[\e[1;30m\]\$(getShrunkenPWD) \[\e[0m\]\[\e[1;37m\]\[\e[1;37m\]\$(get_git_info)\[\e[00m\]"
+PS1="\n${SIMPLE_PROMPT} \n> "
+
+
+#################################################################################
+#            Same handy functions....
+#################################################################################
+
 function shrink {
     currentWD=${PWD}
 }
@@ -89,14 +99,6 @@ function getShrunkenPWD {
         echo ${PWD} | sed "s:${HOME}:~:" -
     fi
 }
-
-#Here is my fancy prompt
-PS1="\n\[\e[47m\]\[\e[1;30m\]\$(getShrunkenPWD) \[\e[0m\]\[\e[1;37m\]\[\e[1;37m\]\$(get_git_info)\[\e[00m\] \n> "
-
-
-#################################################################################
-#            Same handy functions....
-#################################################################################
 
 function jarfind {
     pattern=$1
