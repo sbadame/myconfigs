@@ -1,6 +1,5 @@
-" Turn on pathogen for all plug-ins installed after 9/13/2010
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+" Turn on pathogen for all plug-ins installed after
+call pathogen#infect()
 
 " Sandro spacing preferences here
 set number
