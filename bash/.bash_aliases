@@ -63,19 +63,6 @@ function get_git_info {
   fi
 }
 
-#Add some mercurial fun
-function get_hg_info {
-  hginfo=`hg prompt "({branch}{status}{update}{ PULL{incoming}})" 2> /dev/null`
-  if [[ "$?" == "0"   ]] ; then
-    if  hg prompt '{status}' | grep -q '[!?]' ; then #Red prompt!! Either changes or untracked files
-        echo -en '\e[37;41m'
-      else
-        echo -en '\e[37;44m'
-    fi
-    echo $hginfo
-  fi
-}
-
 function shrink {
     currentWD=${PWD}
 }
@@ -99,7 +86,7 @@ function getShrunkenPWD {
 }
 
 #Here is my fancy prompt
-PS1="\n\[\e[47m\]\[\e[1;30m\]\$(getShrunkenPWD) \[\e[0m\]\[\e[1;37m\]\[\e[1;37m\]\$(get_git_info)\$(get_hg_info)\[\e[00m\] \n> "
+PS1="\n\[\e[47m\]\[\e[1;30m\]\$(getShrunkenPWD) \[\e[0m\]\[\e[1;37m\]\[\e[1;37m\]\$(get_git_info)\[\e[00m\] \n> "
 
 
 #################################################################################
