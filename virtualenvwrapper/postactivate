@@ -1,0 +1,5 @@
+#!/bin/bash
+# This hook is run after every virtualenv is activated.
+
+bck='\e[0;102m'
+PS1="\n\[$txt\]\[$bck\][$(basename $VIRTUAL_ENV)]$SIMPLE_PROMPT\n> "

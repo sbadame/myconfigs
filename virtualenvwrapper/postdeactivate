@@ -1,0 +1,5 @@
+#!/bin/bash
+# This hook is run after every virtualenv is deactivated.
+# Not really needed but it keeps the prompt manageable
+
+PS1="\n${SIMPLE_PROMPT}\n> "
