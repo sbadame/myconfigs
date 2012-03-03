@@ -1,0 +1,13 @@
+# pacman aliases
+alias pacman="pacman-color"
+alias install="yaourt -S"
+alias uninstall="yaourt -Rs"
+alias package-search="yaourt -Ss"
+alias upgrade="yaourt -Syu"
+alias update-package-list="yaourt -Sy"
+
+#Virtualbox crud
+alias load-vbox="sudo modprobe vboxdrv"
+
+#Start mysqld
+alias startmysql="sudo rc.d start mysqld"
