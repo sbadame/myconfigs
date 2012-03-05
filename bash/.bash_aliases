@@ -214,7 +214,35 @@ compress () {
    esac
 }
 
+gitblamer() {
+    echo "Commits per commiter"
+    git shortlog -s
+    commiters=$(git shortlog -s | cut -f2)
+    declare -A linecounts
+    for commiter in $commiters
+    do
+        linecounts[$commiter]="0"
+    done
+
+    for file in $(git ls-files | grep "\.\(py\|html\|java\|cpp\|c\)$")
+    do
+        for commiter in $commiters
+        do
+            #echo "$(git blame $file | grep $commiter | wc -l)"
+            #echo "${linecounts[$commiter]}"
+            linecount=$(git blame $file | grep $commiter | wc -l)
+            linecounts[$commiter]=$(expr ${linecounts[$commiter]} + $linecount)
+        done
+    done
+
+    echo -e "\nLines of Code per commiter"
+    for commiter in $commiters
+    do
+        echo "$commiter ${linecounts[$commiter]}"
+    done
+}
+
 gitinfo () {
-    git ls-tree -r HEAD|sed -re 's/^.{53}//'|while read filename; do file "$filename"; done|grep -E ': .*text'|sed -r -e 's/: .*//'|while read filename; do git blame "$filename"; done|sed -r -e 's/.*\((.*)[0-9]{4}-[0-9]{2}-[0-9]{2} .*/\1/' -e 's/ +$//'|sort|uniq -c
+    git ls-files | while read filename; do file "$filename"; done|grep -E ': .*text'|sed -r -e 's/: .*//'|while read filename; do git blame "$filename"; done|sed -r -e 's/.*\((.*)[0-9]{4}-[0-9]{2}-[0-9]{2} .*/\1/' -e 's/ +$//'|sort|uniq -c
 }
 
