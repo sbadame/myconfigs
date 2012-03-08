@@ -3,3 +3,7 @@
 # Not really needed but it keeps the prompt manageable
 
 PS1="\n${SIMPLE_PROMPT}\n> "
+
+if [[ -f $VIRTUALENVWRAPPER_HOOK_DIR/currentvirtualenv ]]; then
+    rm $VIRTUALENVWRAPPER_HOOK_DIR/currentvirtualenv
+fi

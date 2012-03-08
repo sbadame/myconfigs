@@ -3,3 +3,5 @@
 
 bck='\e[0;102m'
 PS1="\n\[$txt\]\[$bck\][$(basename $VIRTUAL_ENV)]$SIMPLE_PROMPT\n> "
+
+echo $(basename $VIRTUAL_ENV) > $VIRTUALENVWRAPPER_HOOK_DIR/currentvirtualenv

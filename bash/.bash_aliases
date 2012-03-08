@@ -2,10 +2,8 @@ if [[ -f ~/.my_aliases ]]; then
     source ~/.my_aliases;
 fi
 
-if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
-    export WORKON_HOME=$HOME/.virtualenvs
-    source /usr/bin/virtualenvwrapper.sh
-fi
+#The virtualenvwrapper magic happens at the end of the file since the
+#prompt needs to be defined first...
 
 #Some bash crap...
 complete -cf sudo
@@ -246,3 +244,11 @@ gitinfo () {
     git ls-files | while read filename; do file "$filename"; done|grep -E ': .*text'|sed -r -e 's/: .*//'|while read filename; do git blame "$filename"; done|sed -r -e 's/.*\((.*)[0-9]{4}-[0-9]{2}-[0-9]{2} .*/\1/' -e 's/ +$//'|sort|uniq -c
 }
 
+# This needs to happen AFTER the prompt is set.
+if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/bin/virtualenvwrapper.sh
+    if [[ -f $VIRTUALENVWRAPPER_HOOK_DIR/currentvirtualenv ]]; then
+        workon `cat ${VIRTUALENVWRAPPER_HOOK_DIR}/currentvirtualenv`
+    fi
+fi
