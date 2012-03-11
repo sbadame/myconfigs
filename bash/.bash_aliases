@@ -240,6 +240,10 @@ gitinfo () {
     git ls-files | while read filename; do file "$filename"; done|grep -E ': .*text'|sed -r -e 's/: .*//'|while read filename; do git blame "$filename"; done|sed -r -e 's/.*\((.*)[0-9]{4}-[0-9]{2}-[0-9]{2} .*/\1/' -e 's/ +$//'|sort|uniq -c
 }
 
+rgrep () {
+    find . -type f -exec grep $@ {} \;
+}
+
 if [[ -f ~/.my_aliases ]]; then
     source ~/.my_aliases;
 fi
