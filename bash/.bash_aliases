@@ -34,7 +34,12 @@ alias c="clear"
 alias untar='tar -xzvf'
 alias l="ls -lh --group-directories-first"
 alias myip="lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk '{ print \$4 }' | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g'"
+alias tmux="tmux -2"
+
+#Speed things up over SHH
 alias vi='vim -X'
+alias vim='vim -X'
+
 alias open='gnome-open'
 alias top='htop'
 alias pdfmerge='gs -q -sPAPERSIZE=letter -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile='
@@ -243,6 +248,10 @@ gitinfo () {
 
 rgrep () {
     find . -type f -exec grep -Hni $@ {} \;
+}
+
+resource () {
+    source ~/.bash_aliases
 }
 
 if [[ -f ~/.my_aliases ]]; then

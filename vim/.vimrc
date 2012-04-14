@@ -144,6 +144,19 @@ let java_allow_cpp_keywords=1
 set tags=~/.tags
 set complete=.,w,b,u,t,i
 
+
+let g:tagbar_type_tex = {
+    \ 'ctagstype' : 'latex',
+    \ 'kinds'     : [
+        \ 's:sections',
+        \ 'g:graphics',
+        \ 'l:labels',
+        \ 'r:refs:1',
+        \ 'p:pagerefs:1'
+    \ ],
+    \ 'sort'    : 0
+\ }
+
 " STATUS LINE FROM HERE TO THE END OF THE FILE
 
 set statusline=%n:\        "Buffer number
