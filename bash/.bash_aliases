@@ -28,10 +28,13 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[38;05;111m'
 
 export GREP_COLOR="1;33"
-if [ -f "~/.dircolors" ]; then
-    eval "$(dircolors -b ~/.dircolors)"
+if [ -f "${HOME}/.dircolors" ]; then
+    eval "$(dircolors -b ${HOME}/.dircolors)"
 fi
 
+if [ -d "path" ]; then
+    export PATH="$(pwd)/path:${PATH}"
+fi
 
 alias grep='LC_ALL="C" grep --color=auto'
 alias c="clear"
