@@ -10,6 +10,9 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround
 
+" Tell vim to use my interactive bash shell
+set shellcmdflag=-ic
+
 filetype on " enables filetype detection
 filetype plugin on " enables filetype specific plug-ins
 filetype indent on " OPTIONAL: This enables automatic indentation as you type.

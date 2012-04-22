@@ -27,14 +27,19 @@ export LESS_TERMCAP_so=$'\e[01;44;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[38;05;111m'
 
-#Random program improvements
 export GREP_COLOR="1;33"
+if [ -f "~/.dircolors" ]; then
+    eval "$(dircolors -b ~/.dircolors)"
+fi
+
+
 alias grep='LC_ALL="C" grep --color=auto'
 alias c="clear"
 alias untar='tar -xzvf'
+alias ls='ls --color=auto'
 alias l="ls -lh --group-directories-first"
 alias myip="lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk '{ print \$4 }' | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g'"
-alias tmux="tmux -2"
+alias tmux="tmux -2u"
 
 #Speed things up over SHH
 alias vi='vim -X'
