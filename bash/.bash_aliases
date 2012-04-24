@@ -32,8 +32,8 @@ if [ -f "${HOME}/.dircolors" ]; then
     eval "$(dircolors -b ${HOME}/.dircolors)"
 fi
 
-if [ -d "path" ]; then
-    export PATH="$(pwd)/path:${PATH}"
+if [ -d "${HOME}/.path" ]; then
+    export PATH="${HOME}/.path:${PATH}"
 fi
 
 alias grep='LC_ALL="C" grep --color=auto'
@@ -43,10 +43,12 @@ alias ls='ls --color=auto'
 alias l="ls -lh --group-directories-first"
 alias myip="lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk '{ print \$4 }' | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g'"
 alias tmux="tmux -2u"
+alias btget="transmission-cli -w ."
 
 #Speed things up over SHH
-alias vi='vim -X'
 alias vim='vim -X'
+alias vi='vim -X'
+
 
 alias open='gnome-open'
 alias top='htop'
@@ -260,6 +262,11 @@ rgrep () {
 
 resource () {
     source ~/.bash_aliases
+}
+
+function serve {
+    myip
+    python2.7 -m SimpleHTTPServer 2869 .
 }
 
 if [[ -f ~/.my_aliases ]]; then
