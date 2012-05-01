@@ -33,7 +33,9 @@ if [ -f "${HOME}/.dircolors" ]; then
 fi
 
 if [ -d "${HOME}/.path" ]; then
-    export PATH="${HOME}/.path:${PATH}"
+    if [[ "${PATH}" != *"${HOME}/.path"* ]]; then
+        export PATH="${HOME}/.path:${PATH}"
+    fi
 fi
 
 alias grep='LC_ALL="C" grep --color=auto'
