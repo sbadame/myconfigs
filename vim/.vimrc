@@ -1,17 +1,31 @@
 " Turn on pathogen for all plug-ins installed after
 call pathogen#infect()
 
+" Anything that I only need locally on the machine
+if filereadable(expand("~/.vimrc_local"))
+  source ~/.vimrc_local
+endif
+
 " Sandro spacing preferences here
 set number
 set expandtab
 set autoindent
 set smartindent
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
 set shiftround
 
 " Tell vim to use my interactive bash shell
 set shellcmdflag=-ic
+
+" Enable mouse in vim
+set mouse+=a
+
+" Make mouse work eventhough I'm in tmux
+if &term =~ '^screen'
+  " tmux knows the extended mouse mode
+  set ttymouse=xterm2
+endif
 
 filetype on " enables filetype detection
 filetype plugin on " enables filetype specific plug-ins
@@ -58,7 +72,6 @@ else "Oh crap... we're on windows, aren;t we??
 end
 
 set nowrap   " Disable line wrapping
-" set mouse=a " Enable the mouse even when vi is used in the terminal
 set nomousehide
 set textwidth=120
 
@@ -88,12 +101,12 @@ set nospell
 set thesaurus+=/usr/share/myspell/dicts/mthesaur.txt
 
 " Some NERDTree love
- let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
- let NERDTreeShowBookmarks=1
- let NERDTreeQuitOnOpen=1
- let NERDTreeHighlightCursorline=1
- let NERDTreeShowFiles=1
- let NERDTreeShowHidden=1
+let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+let NERDTreeShowBookmarks=1
+let NERDTreeQuitOnOpen=1
+let NERDTreeHighlightCursorline=1
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=1
 
 
 " Make swapping windows easier...
@@ -129,6 +142,9 @@ set formatprg=par
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loclist=1
 let g:syntastic_quiet_warnings=0
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'passive_filetypes': ['java']}
+
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
