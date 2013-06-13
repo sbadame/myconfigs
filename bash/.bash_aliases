@@ -277,7 +277,7 @@ if [[ -f ~/.my_aliases ]]; then
 fi
 
 # This needs to happen AFTER the prompt is set.
-if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
+if [[ ! $VIRTUAL_ENV && -f /usr/bin/virtualenvwrapper.sh ]]; then
     export WORKON_HOME=$HOME/.virtualenvs
     source /usr/bin/virtualenvwrapper.sh
     if [[ -f $VIRTUALENVWRAPPER_HOOK_DIR/currentvirtualenv ]]; then
