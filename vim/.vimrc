@@ -10,6 +10,10 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround
 
+" Custom file type info
+" Arduino *.ino files are closer to c
+au BufRead,BufNewFile *.ino setfiletype c
+
 " Tell vim to use my interactive bash shell
 set shellcmdflag=-ic
 
@@ -27,6 +31,7 @@ colors sorcerer
 noremap <silent> <F2> :NERDTreeToggle<CR>
 noremap <silent> <F3> :TagbarToggle<CR>
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+map <leader>gf :e <cfile><cr>
 
 " Gimme some breathing room at the bottom please...
 set scrolloff=10

@@ -1,10 +1,9 @@
 # pacman aliases
-alias pacman="pacman-color"
-alias install="yaourt -S"
-alias uninstall="yaourt -Rs"
+alias install="sudo yaourt -S"
+alias uninstall="sudo yaourt -Rs"
 alias package-search="yaourt -Ss"
-alias upgrade="yaourt -Syu"
-alias update-package-list="yaourt -Sy"
+alias upgrade="sudo yaourt -Syu"
+alias update-package-list="sudo yaourt -Sy"
 
 #Virtualbox crud
 alias load-vbox="sudo modprobe vboxdrv"

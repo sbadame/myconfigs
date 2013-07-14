@@ -46,6 +46,11 @@ alias l="ls -lh --group-directories-first"
 alias myip="lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk '{ print \$4 }' | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g'"
 alias tmux="tmux -2u"
 alias btget="transmission-cli -w ."
+alias watch="watch -c -t"
+
+#For my devices
+alias nexus4="simple-mtpfs /media/nexus4"
+alias nexus7="simple-mtpfs /media/nexus7"
 
 #Speed things up over SHH
 alias vim='vim -X'
@@ -71,7 +76,7 @@ function get_git_branch {
 
 function get_git_info {
   if [ -d .git ] || git rev-parse > /dev/null 2>&1 ; then
-      if [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]]; then
+      if [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]]; then
         echo -en '\e[37;41m'"($(get_git_branch)*)"
       else
         echo -en '\e[37;44m'"($(get_git_branch))"
