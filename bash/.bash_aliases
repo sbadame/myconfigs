@@ -272,6 +272,10 @@ function serve {
     python2.7 -m SimpleHTTPServer 2869 .
 }
 
+function proc_bound () {
+    netstat -lnp | grep $@
+}
+
 if [[ -f ~/.my_aliases ]]; then
     source ~/.my_aliases;
 fi
