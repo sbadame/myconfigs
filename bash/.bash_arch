@@ -10,3 +10,6 @@ alias load-vbox="sudo modprobe vboxdrv"
 
 #Start mysqld
 alias startmysql="sudo rc.d start mysqld"
+
+# Required for netflix, run script, got it from here: https://wiki.archlinux.org/index.php/Xdg_user_directories
+export XDG_CONFIG_HOME="~/.config"
