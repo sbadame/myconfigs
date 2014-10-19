@@ -46,7 +46,7 @@ alias l="ls -lh --group-directories-first"
 alias myip="lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk '{ print \$4 }' | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g'"
 alias tmux="tmux -2u"
 alias btget="transmission-cli -w ."
-alias watch="watch -c -t"
+alias watch="watch --color --no-title"
 
 #For my devices
 alias nexus4="simple-mtpfs /media/nexus4"
@@ -56,13 +56,13 @@ alias nexus7="simple-mtpfs /media/nexus7"
 alias vim='vim -X'
 alias vi='vim -X'
 
-
 alias open='gnome-open'
 alias top='htop'
 alias pdfmerge='gs -q -sPAPERSIZE=letter -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile='
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+alias .....="cd ../../../.."
 
 
 ################################################################################
@@ -274,6 +274,10 @@ resource () {
 function serve {
     myip
     python2.7 -m SimpleHTTPServer 2869 .
+}
+
+function proc_bound () {
+    netstat -lnp | grep $@
 }
 
 if [[ -f ~/.my_aliases ]]; then
