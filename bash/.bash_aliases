@@ -76,7 +76,7 @@ function get_git_branch {
 
 function get_git_info {
   if [ -d .git ] || git rev-parse > /dev/null 2>&1 ; then
-      if [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]]; then
+      if [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]]; then
         echo -en '\e[37;41m'"($(get_git_branch)*)"
       else
         echo -en '\e[37;44m'"($(get_git_branch))"
