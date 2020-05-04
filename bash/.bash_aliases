@@ -76,7 +76,8 @@ function get_git_branch {
 
 function get_git_info {
   if [ -d .git ] || git rev-parse > /dev/null 2>&1 ; then
-      if [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]]; then
+      # https://stackoverflow.com/questions/2657935/checking-for-a-dirty-index-or-untracked-files-with-git
+      if ! git diff-index --quiet HEAD --; then
         echo -en '\e[37;41m'"($(get_git_branch)*)"
       else
         echo -en '\e[37;44m'"($(get_git_branch))"
@@ -293,4 +294,17 @@ if [[ ! $VIRTUAL_ENV && -f /usr/bin/virtualenvwrapper.sh ]]; then
         workon `cat ${VIRTUALENVWRAPPER_HOOK_DIR}/currentvirtualenv`
         cd $lastdir
     fi
+fi
+
+# -z string is null, that is, has zero length
+# -n string is not null.
+# If TMUX is null, then check if there are existing TMUX sessions and offer those.
+if [ -z "$TMUX" ]; then
+  if [ -n "$(tmux ls)" ]; then
+    echo "There is an existing tmux session, attach to it? [Y/n]"
+    read var_attach
+    if [ "$var_attach" = "Y" -o "$var_attach" = "" -o "$var_attach" = "y" ]; then
+      tmux attach -d
+    fi
+  fi
 fi

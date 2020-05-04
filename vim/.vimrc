@@ -1,3 +1,4 @@
+
 " Turn on pathogen for all plug-ins installed after
 call pathogen#infect()
 
@@ -32,8 +33,9 @@ if &term =~ '^screen'
 endif
 
 filetype on " enables filetype detection
-filetype plugin on " enables filetype specific plug-ins
-filetype indent on " OPTIONAL: This enables automatic indentation as you type.
+" Allow for config files to be in ~/.vim/ftplugin/<filetype>.vim
+filetype plugin on
+filetype indent on " This enables automatic indentation as you type.
 syntax on
 set cursorline
 set ofu=syntaxcomplete#Complete
@@ -56,25 +58,17 @@ set virtualedit=all
 " Just hurry up with the multicommand time out!
 set timeoutlen=500
 
-if has("unix")
-    set undofile " Have a persistant undo
-    let g:clipbrdDefaultReg = '+' " Since I use linux, I want this
-    set directory=/tmp
-    if v:version >= 703
-        set undodir=/tmp
-    end
-
-    "display tabs and trailing spaces
-    set list
-    set listchars=tab:>\•,extends:»,precedes:«,trail:•
-    set showbreak=…
-else "Oh crap... we're on windows, aren;t we??
-    set guifont=Lucida_Console:h12:cANSI
-    set directory=$TMP
-    if v:version >= 703
-        set undodir=$TMP
-    end
+set undofile " Have a persistant undo
+let g:clipbrdDefaultReg = '+' " Since I use linux, I want this
+set directory=/tmp
+if v:version >= 703
+    set undodir=/tmp
 end
+
+"display tabs and trailing spaces
+set list
+set listchars=tab:>\•,extends:»,precedes:«,trail:•
+set showbreak=…
 
 set nowrap   " Disable line wrapping
 set nomousehide
@@ -164,7 +158,7 @@ set sm
 set ai
 let java_highlight_all=1
 let java_highlight_functions="style"
-let java_allow_cpp_keywords=1
+let java_allow_cpp_keywords=2
 set tags=~/.tags
 set complete=.,w,b,u,t,i
 
