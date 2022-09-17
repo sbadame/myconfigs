@@ -1,4 +1,3 @@
-
 " Turn on pathogen for all plug-ins installed after
 call pathogen#infect()
 
@@ -19,9 +18,6 @@ set shiftround
 " Custom file type info
 " Arduino *.ino files are closer to c
 au BufRead,BufNewFile *.ino setfiletype c
-
-" Tell vim to use my interactive bash shell
-set shellcmdflag=-ic
 
 " Enable mouse in vim
 set mouse+=a
